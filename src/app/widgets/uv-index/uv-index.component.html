@@ -1,0 +1,9 @@
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title"><i class="fas fa-sun"></i> UV Index</h5>
+    <p class="card-text">{{ uvIndex }}</p>
+    <div class="uv-bar">
+      <div class="uv-indicator" [style.left.%]="uvIndex * 10"></div>
+    </div>
+  </div>
+</div>

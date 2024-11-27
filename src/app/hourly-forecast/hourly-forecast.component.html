@@ -1,0 +1,13 @@
+<div class="container hourly-forecast-container">
+  <div class="row hourly-forecast justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4 mb-3" *ngFor="let hour of filteredForecast">
+      <div class="card text-center">
+        <div class="card-body">
+          <p class="card-title">{{ hour.dt_txt | date: 'shortTime' }}</p>
+          <img [src]="getWeatherIcon(hour.weather[0].main)" class="weather-icon" alt="weather icon">
+          <p class="card-text">{{ hour.main.temp }}°C</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

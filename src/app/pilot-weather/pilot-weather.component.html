@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h1>Detailed Weather for {{ city }}</h1>
+  <app-airport-search (airportSelected)="onAirportSelected($event)"></app-airport-search>
+
+  <div *ngIf="warningMessage" class="alert alert-warning mt-4">
+    {{ warningMessage }}
+  </div>
+
+  <div *ngIf="airportInfo" class="card mt-4">
+    <div class="card-header">
+      <i class="fas fa-plane"></i> Airport Information
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><i class="fas fa-info-circle"></i> <strong>Type:</strong> {{ airportInfo.type || 'N/A' }}</p>
+          <p><i class="fas fa-tachometer-alt"></i> <strong>Elevation:</strong> {{ airportInfo.elevation || 'N/A' }} ft</p>
+          <p><i class="fas fa-compass"></i> <strong>Magnetic Declination:</strong> {{ airportInfo.magnetic_declination || 'N/A' }}°</p>
+        </div>
+        <div class="col-md-6">
+          <p><i class="fas fa-sun"></i> <strong>Dawn:</strong> {{ airportInfo.dawn | date:'shortTime' || 'N/A' }}</p>
+          <p><i class="fas fa-moon"></i> <strong>Dusk:</strong> {{ airportInfo.dusk | date:'shortTime' || 'N/A' }}</p>
+          <p><i class="fas fa-sunrise"></i> <strong>Sunrise:</strong> {{ airportInfo.sunrise | date:'shortTime' || 'N/A' }}</p>
+          <p><i class="fas fa-sunset"></i> <strong>Sunset:</strong> {{ airportInfo.sunset | date:'shortTime' || 'N/A' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-metar-display *ngIf="metar" [metar]="metar"></app-metar-display>
+  <app-taf-display *ngIf="taf" [taf]="taf"></app-taf-display>
+
+  <div *ngIf="notam" class="card mt-4">
+    <div class="card-header">
+      <i class="fas fa-exclamation-triangle"></i> NOTAM
+    </div>
+    <div class="card-body">
+      <pre>{{ notam | json }}</pre>
+    </div>
+  </div>
+</div>

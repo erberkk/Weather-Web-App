@@ -1,0 +1,38 @@
+.weather-card {
+  max-width: 200px; // Set a maximum width to ensure consistent sizing
+  margin: 10px; // Add margin to ensure spacing between cards
+
+  .day {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .weather-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .temp-values {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+
+  .card-title {
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+}

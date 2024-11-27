@@ -1,0 +1,79 @@
+<div class="container mt-4" *ngIf="weather && weather.coord">
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <button class="btn btn-primary btn-lg" (click)="goToDetailedWeather()">
+        View Detailed Weather for Pilots
+      </button>
+    </div>
+  </div>
+
+  <!-- Current Weather and Hourly Forecast -->
+  <div class="row mb-4 weather-data">
+    <div class="col-12 col-md-6 text-center current-weather">
+      <h2>{{ weather.name }}</h2>
+      <img [src]="getWeatherIcon(weather.weather[0].main)" class="weather-icon" alt="weather icon">
+      <p>{{ weather.weather[0].description }}</p>
+      <p class="temperature">{{ weather.main.temp }}°C</p>
+    </div>
+    <div class="col-12 col-md-6 hourly-forecast">
+      <app-hourly-forecast [forecast]="forecast.list"></app-hourly-forecast>
+    </div>
+  </div>
+
+  <!-- 5-Day Forecast -->
+  <div class="row mb-4 forecast">
+    <div class="col-12">
+      <h2>5-Day Forecast</h2>
+      <div class="d-flex flex-wrap justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <app-weather-card *ngFor="let item of getFiveDayForecast(forecast.list)" [weather]="item" [forecast]="forecast"></app-weather-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Widgets Containers -->
+  <div class="row mb-4 widgets-container">
+    <!-- First Widget Container -->
+    <div class="col-12 col-md-6 first-container">
+      <div class="row">
+        <div class="col-6 col-md-3" *ngIf="uvIndex !== undefined">
+          <app-uv-index [uvIndex]="uvIndex"></app-uv-index>
+        </div>
+        <div class="col-6 col-md-3" *ngIf="weather.main.feels_like">
+          <app-feels-like-widget [feelsLike]="weather.main.feels_like"></app-feels-like-widget>
+        </div>
+        <div class="col-6 col-md-3" *ngIf="weather.main.humidity">
+          <app-humidity-widget [humidity]="weather.main.humidity"></app-humidity-widget>
+        </div>
+        <div class="col-6 col-md-3" *ngIf="weather.wind.speed">
+          <app-wind-widget [windSpeed]="weather.wind.speed" [windDirection]="weather.wind.deg"></app-wind-widget>
+        </div>
+        <div class="col-12" *ngIf="weather.sys.sunrise && weather.sys.sunset">
+          <app-sunrise-sunset-widget [sunrise]="weather.sys.sunrise" [sunset]="weather.sys.sunset"></app-sunrise-sunset-widget>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Widget Container -->
+    <div class="col-12 col-md-6 second-container">
+      <div class="row">
+        <div class="col-6 col-md-4" *ngIf="averageTemp !== undefined">
+          <app-average-temperature-widget [averageTemp]="averageTemp" [currentTemp]="weather.main.temp"></app-average-temperature-widget>
+        </div>
+        <div class="col-6 col-md-4" *ngIf="weather.visibility">
+          <app-visibility-widget [visibility]="weather.visibility"></app-visibility-widget>
+        </div>
+        <div class="col-6 col-md-4" *ngIf="weather.main.pressure">
+          <app-pressure-widget [pressure]="weather.main.pressure"></app-pressure-widget>
+        </div>
+        <div class="col-12" *ngIf="weather && weather.coord">
+          <app-air-quality-widget [lat]="weather.coord.lat" [lon]="weather.coord.lon"></app-air-quality-widget>
+        </div>
+        <div class="col-12" *ngIf="city">
+          <app-weather-alerts-widget [city]="city"></app-weather-alerts-widget>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

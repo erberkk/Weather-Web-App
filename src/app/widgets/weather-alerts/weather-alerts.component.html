@@ -1,0 +1,14 @@
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title"><i class="fas fa-exclamation-triangle"></i> Weather Alerts</h5>
+    <div *ngFor="let alert of alerts">
+      <p><strong>{{ alert.event }}</strong></p>
+      <p>{{ alert.description }}</p>
+      <p>Starts: {{ alert.start | date:'short' }}</p>
+      <p>Ends: {{ alert.end | date:'short' }}</p>
+    </div>
+    <div *ngIf="alerts.length === 0">
+      <p>No weather alerts for {{ city }}.</p>
+    </div>
+  </div>
+</div>

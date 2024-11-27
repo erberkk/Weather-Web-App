@@ -1,0 +1,23 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <i class="fas fa-cloud-sun"></i> METAR for {{ metar.station }}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+        <p><i class="fas fa-thermometer-half"></i> <strong>Temperature:</strong> {{ metar.temperature.value }} °C</p>
+        <p><i class="fas fa-tint"></i> <strong>Dewpoint:</strong> {{ metar.dewpoint.value }} °C</p>
+        <p><i class="fas fa-wind"></i> <strong>Wind:</strong> {{ metar.wind_speed.value }} kt at {{ metar.wind_direction.value }}°</p>
+        <p><i class="fas fa-eye"></i> <strong>Visibility:</strong> {{ metar.visibility.value }} m</p>
+        <p><i class="fas fa-flag"></i> <strong>Flight Rules:</strong> {{ metar.flight_rules }}</p>
+      </div>
+      <div class="col-6">
+        <p><i class="fas fa-cloud"></i> <strong>Clouds:</strong></p>
+        <ul>
+          <li *ngFor="let cloud of metar.clouds">{{ cloud.repr }} at {{ cloud.altitude }} ft</li>
+        </ul>
+        <p><i class="fas fa-tachometer-alt"></i> <strong>Pressure:</strong> {{ metar.altimeter.value }} hPa</p>
+      </div>
+    </div>
+  </div>
+</div>

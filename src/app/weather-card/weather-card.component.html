@@ -1,0 +1,11 @@
+<div class="card text-center weather-card mx-auto mb-4">
+  <div class="card-body">
+    <p class="card-title day">{{ weather.dt_txt | date: 'EEEE' }}</p>
+    <img [src]="getWeatherIcon(weather.weather[0].main)" class="weather-icon my-2" alt="weather icon">
+    <p class="card-text my-2">{{ weather.weather[0].description }}</p>
+    <div class="temp-values d-flex justify-content-center mt-3">
+      <span class="me-3" [ngStyle]="{'color': getTempColor(weather.main.temp_min)}">{{ weather.main.temp_min }}°C</span>
+      <span [ngStyle]="{'color': getTempColor(weather.main.temp_max)}">{{ weather.main.temp_max }}°C</span>
+    </div>
+  </div>
+</div>

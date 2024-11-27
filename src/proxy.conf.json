@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://aviationweather.gov",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
